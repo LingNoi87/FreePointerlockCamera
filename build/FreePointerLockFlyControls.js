@@ -1,12 +1,4 @@
 
-/**
- * Author: LingNoi87
- * E-Mail: ewok.slayer101@gmail.com
- * Information: FreePointerFlyControls.js is a small but essential adaptation of the base library "PointerLockFlyControl.js". The camera now can be moved in the same manner as in first person shooters.
- * Motivation was to remove continuous panning, tilting once mouse has been displaced from "view center point". Rotation and translation is allowed in all axis and directions.
- */
-
-
 import {
 	EventDispatcher,
 	Quaternion,

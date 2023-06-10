@@ -23,10 +23,10 @@ const sound = new THREE.Audio( listener );
 // load a sound and set it as the Audio object's buffer
 const audioLoader = new THREE.AudioLoader();
 audioLoader.load( '/src/audio/space.mp3', function( buffer ) {
-	sound.setBuffer( buffer );
-	sound.setLoop( true );
-	sound.setVolume( 1.0 );
-	sound.play();
+sound.setBuffer( buffer );
+sound.setLoop( true );
+sound.setVolume( 1.0 );
+sound.play();
 });
 
 
