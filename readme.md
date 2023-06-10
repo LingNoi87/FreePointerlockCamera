@@ -1,5 +1,5 @@
 
- # FreePointerFlyControls.js
+ # FreePointerLockFlyControls.js
 A threeJS camera control library 
 
  #### Information 
@@ -11,7 +11,7 @@ A threeJS camera control library
  ##### PointerLockFlyControl.js
  Allows pan and tilt of camera proportional to and in the dirction of mousemove - just like in a first persion shooter. However, the limitation is that translational movement is only allowed on the x-y-plane and rolling is not possible at all.
  
- ##### FreePointerFlyControls.js
+ ##### FreePointerLockFlyControls.js
  Combines both control libraries. Now the camera can be moved in the same manner as in first person shooters, while rotation around all exis and trasnslation along all axis is possible withput gimbal lock.
  
  #### How to run
