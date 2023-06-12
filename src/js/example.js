@@ -1,10 +1,13 @@
 import * as THREE from '../../build/three.module.js';
 import { FreePointerLockFlyControls } from '../../build/FreePointerLockFlyControls.js';
+import * as dat from "https://cdn.skypack.dev/dat.gui"
+const gui = new dat.GUI();
 const clock = new THREE.Clock();//used for orbintcontrol
 const textureLoader = new THREE.TextureLoader();
 
 function main() 
 {
+
   //-----------------------camera, scene, renderer---------------------------------------------------
   const canvas = document.querySelector('#c');
   const renderer = new THREE.WebGLRenderer({canvas},{antialias:true, alpha:true});
@@ -29,7 +32,6 @@ sound.setVolume( 1.0 );
 sound.play();
 });
 
-
 //--------------controls------------------------------------------------------------------
 const controls = new FreePointerLockFlyControls( camera, canvas );
 controls.movementSpeed = 0.4;
@@ -37,7 +39,30 @@ controls.domElement = renderer.domElement;
 controls.rollSpeed = Math.PI / 24;
 controls.autoForward = false;
 controls.dragToLook = false;
-controls.continuousRotation = false;
+controls.invertUpDownKeys = true;
+
+ //-----------------------------GUI Controls----------------------------------------------------------
+var guiControls = new function() 
+{
+  this.playSound = true;
+  this.invertUpDown = controls.invertUpDownKeys;
+  this.autoForward = controls.autoForward;
+  this.rollSpeed = controls.rollSpeed;
+  this.movementSpeed = controls.movementSpeed;
+}
+const guiFolder = gui.addFolder('Settings');
+guiFolder.add(guiControls, 'playSound').onChange(()=>{if(guiControls.playSound)
+                                                         {  sound.play(); }
+                                                         else
+                                                         {  sound.pause(); }});
+guiFolder.add(guiControls, 'invertUpDown').onChange(()=>{controls.invertUpDownKeys = guiControls.invertUpDown});       
+guiFolder.add(guiControls, 'autoForward').onChange(()=>{controls.autoForward = guiControls.autoForward});     
+guiFolder.add(guiControls, 'rollSpeed', 0, 0.5).onChange(()=>{controls.rollSpeed = guiControls.rollSpeed});
+guiFolder.add(guiControls, 'movementSpeed', 0, 1.5).onChange(()=>{controls.movementSpeed = guiControls.movementSpeed});                                                    
+guiFolder.open();
+
+
+
 
   // resize canvas on resize window
   window.addEventListener( 'resize', () => {
